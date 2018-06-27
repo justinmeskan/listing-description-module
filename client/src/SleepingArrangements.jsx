@@ -170,7 +170,7 @@ class SleepingArrangements extends React.Component {
                       {this.props.sleep.map((room, index) =>
                         <SleepingDetails
                           key={index}
-                          idx={index}
+                          idx= {index}
                           details={room}
                         />)}
                     </Div1w8hgual>

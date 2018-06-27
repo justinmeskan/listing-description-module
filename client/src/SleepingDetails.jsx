@@ -104,10 +104,10 @@ class SleepingDetails extends React.Component {
         <Div699th3t>
           <Div1ocrz96>
             <Div152qbzi aria-hidden="true">
-              {renderBeds(this.props.details.noOfBeds, this.props.details.typeOfBed).map(bed => bed)}
+              {renderBeds(this.props.details.noofbeds, this.props.details.typeofbed).map(bed => bed)}
             </Div152qbzi>
-            <Div157yfd15>{this.props.details.roomName} {this.props.idx + 1}</Div157yfd15>
-            <Div1fcn46ls>{this.props.details.noOfBeds} {this.props.details.typeOfBed} Bed</Div1fcn46ls>
+            <Div157yfd15>{this.props.details.roomname} {this.props.idx + 1}</Div157yfd15>
+            <Div1fcn46ls>{this.props.details.noofbeds} {this.props.details.typeofbed} Bed</Div1fcn46ls>
           </Div1ocrz96>
         </Div699th3t>
       </Div1johmo39>

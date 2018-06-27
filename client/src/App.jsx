@@ -51,27 +51,27 @@ class App extends React.Component {
   componentDidMount() {
     axios.get(`/listings/${listingId}/overview`)
       .then((results) => {
-        const loc = results.data[0].neighborhood;
-        const ln = results.data[0].listingName;
-        const lb = results.data[0].listingBlurb;
-        const intro = results.data[0].summary.split('\n\n');
-        const s1 = results.data[0].theSpace.split('\n\n');
-        const s2 = results.data[0].guestAccess.split('\n\n');
-        const s3 = results.data[0].interactionWithGuests.split('\n\n');
-        const s4 = results.data[0].otherThingsToNote.split('\n\n');
-        const br = results.data[0].noOfBedrooms;
-        const bd = results.data[0].noOfBeds;
-        const ba = results.data[0].noOfBaths;
-        const gs = results.data[0].noOfGuests;
-        const hh1 = results.data[0].homeHighlights1;
-        const hh2 = results.data[0].homeHighlights2;
-        const hh3 = results.data[0].homeHighlights3;
+        const loc = results.data.neighborhood;
+        const ln = results.data.listingname;
+        const lb = results.data.listingblurb;
+        const intro = results.data.summary.split('.');
+        const s1 = results.data.thespace.split('.');
+        const s2 = results.data.guestaccess.split('.');
+        const s3 = results.data.interactionwithguests.split('.');
+        const s4 = results.data.otherthingstonote.split('.');
+        const br = results.data.noofbedrooms;
+        const bd = results.data.noofbeds;
+        const ba = results.data.noofbaths;
+        const gs = results.data.noofguests;
+        const hh1 = results.data.homehighlights1;
+        const hh2 = results.data.homehighlights2;
+        const hh3 = results.data.homehighlights3;
 
         this.setState({
           loc,
           ln,
           lb,
-          overview: results.data[0],
+          overview: results.data,
           intro,
           s1,
           s2,
@@ -91,7 +91,11 @@ class App extends React.Component {
       });
     axios.get(`/listings/${listingId}/arrangements`)
       .then((results) => {
-        const sleep = results.data;
+        const sleep = [];
+        const keys = Object.keys(results.data);
+        for (let i = 0; i < keys.length; i += 1) {
+          sleep.push(results.data);
+        }
         this.setState({
           sleep,
         }, () => {
@@ -131,10 +135,10 @@ class App extends React.Component {
               />
               <Overview
                 intro={this.state.intro}
-                section1={this.state.s1}
-                section2={this.state.s2}
-                section3={this.state.s3}
-                section4={this.state.s4}
+                section1= {this.state.s1}
+                section2= {this.state.s2}
+                section3= {this.state.s3}
+                section4= {this.state.s4}
               />
             </div>
               {/* dividing line */}
@@ -152,9 +156,9 @@ class App extends React.Component {
             <div>
               {/* Sleeping Arrangements */}
               <SleepingArrangements
-                sleep={this.state.sleep}
-                roomTally={this.state.roomTally}
-                rightClicksAvailable={this.state.rightClicksAvailable}
+                sleep = {this.state.sleep}
+                roomTally = {this.state.roomTally}
+                rightClicksAvailable = {this.state.rightClicksAvailable}
               />
             </div>
             {/* dividing line */}
