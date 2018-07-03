@@ -18,19 +18,20 @@ const getListingOverview = (listingId, callback) => {
   });
 };
 
-const addListingOverview = (listingId, values, callback) => {
-  const query = `insert into realtable (id, summary, theSpace, guestAccess,
-  interactionWithGuests, otherThingsToNote, noOfGuests, noOfBedrooms,
-  noOfBeds, noOfBaths, listingName, listingBlurb,
-  neighborhood) values(${values})`;
+const addListingOverview = (values, callback) => {
+  values = JSON.parse(values);
+  const query = "insert into realtable (id,noOfBaths,noOfBedrooms,noOfBeds,noOfGuests,guestAccess,homeHighlights1,homeHighlights2,homeHighlights3,interactionWithGuests,listingBlurb,listingName,neighborhood,otherThingsToNote,summary,theSpace) values("+ parseInt(values.id) +","+ parseInt(values.noOfBaths)+","+ parseInt(values.noOfBedrooms)+","+ parseInt(values.noOfBeds)+","+ parseInt(values.noOfGuests)+",'"+ values.guestAccess+"','"+ values.homeHighlights1+"','"+ values.homeHighlights2+"','"+ values.homeHighlights3+"','"+ values.interactionWithGuests+"','"+ values.listingBlurb+"','"+ values.listingName+"','"+ values.neighborhood+"','"+ values.otherThingsToNote+"','"+ values.theSpace+"','"+ values.summary+"');";
   client.execute(query, (err, result) => {
-    if (err)callback(err);
-    callback(err, result.rows[0]);
+    if (err) {
+      console.log('Good Lucj Justin your results are', err);
+    } else {
+      callback(null, result);
+    }
   });
 };
 
 const changeListingOverview = (listingId, key, value, callback) => {
-  const query = `update realtable set ${key}=${value} where id = ${listingId}`;
+  const query = `update realtable set ${key}=${value} where id = ${listingId};`;
   client.execute(query, (err, result) => {
     if (err)callback(err);
     callback(err, result.rows[0]);
@@ -38,7 +39,7 @@ const changeListingOverview = (listingId, key, value, callback) => {
 };
 
 const removeListingOverview = (listingId, column, callback) => {
-  const query = `delete ${column} from realtable where id = ${listingId}`;
+  const query = `delete ${column} from realtable where id = ${listingId};`;
   client.execute(query, (err, result) => {
     if (err)callback(err);
     callback(err, result.rows[0]);
@@ -48,7 +49,7 @@ const removeListingOverview = (listingId, column, callback) => {
 // sleepingDetail Mmethods
 const getSleepingDetails = (listingID, callback) => {
   const query2 = `select id, noOfBeds, roomName,
-  typeOfBed from realtabletwo where id = ${listingID}`;
+  typeOfBed from realtabletwo where id = ${listingID};`;
   client.execute(query2, (err, result) => {
     if (err)callback(err);
     callback(err, result.rows[0]);
@@ -57,7 +58,7 @@ const getSleepingDetails = (listingID, callback) => {
 
 const addSleepingDetails = (listingID, values, callback) => {
   const query2 = `insert into realtable (id, noOfBeds, roomName,
-  typeOfBed) values(${values})`;
+  typeOfBed) values(${values});`;
   client.execute(query2, (err, result) => {
     if (err)callback(err);
     callback(err, result.rows[0]);
@@ -65,7 +66,7 @@ const addSleepingDetails = (listingID, values, callback) => {
 };
 
 const changeSleepingDetails = (listingID, key, value, callback) => {
-  const query2 = `update realtable set ${key}=${value} where id = ${listingID}`;
+  const query2 = `update realtable set ${key}=${value} where id = ${listingID};`;
   client.execute(query2, (err, result) => {
     if (err)callback(err);
     callback(err, result.rows[0]);
@@ -73,7 +74,7 @@ const changeSleepingDetails = (listingID, key, value, callback) => {
 };
 
 const removeSleepingDetails = (listingID, column, callback) => {
-  const query2 = `delete ${column} from realtable where id = ${listingID}`;
+  const query2 = `delete ${column} from realtable where id = ${listingID};`;
   client.execute(query2, (err, result) => {
     if (err)callback(err);
     callback(err, result.rows[0]);

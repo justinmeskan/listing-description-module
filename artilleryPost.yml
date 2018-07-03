@@ -1,0 +1,14 @@
+config:
+  target: 'http://localhost:3002'
+  phases:
+    - duration: 1
+      arrivalRate: 1
+  defaults:
+    headers:
+      x-my-service-auth: '987401838271002188298567'
+scenarios:
+  - flow:
+    - post:
+        url: '/listings/11000100/overview'
+        json:
+          values: "{'id':11000100,'summary':'hi demos c ossola l ao you what up','theSpace':'it is so nice','guestAccess':'there is none','homeHighlights1':'there is none','homeHighlights2':'there is none','homeHighlights3':'there is none','interactionWithGuests':'maybe for yoy dude','otherThingsToNote':'ya there is ask me','noOfGuests':3,'noOfBedrooms':4,'noOfbeds':1,'noOfBaths':3,'listingName':'justin rockes dude','listingBlurb':'yo yo yo','neighborhood':'san fran'}"

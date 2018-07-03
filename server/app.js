@@ -22,7 +22,8 @@ app.get('/listings/:listingId/overview', (req, res) => {
 });
 
 app.post('/listings/:listingId/overview', (req, res) => {
-  db.addListingOverview(req.params.listingId, req.body.values, (err, results) => {
+  // console.log('my body', req.body.values);
+  db.addListingOverview(JSON.stringify(req.body.values), (err, results) => {
     if (err) {
       res.status(500);
     } else {

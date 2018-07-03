@@ -1,0 +1,58 @@
+config:
+  target: 'http://localhost:3002'
+  phases:
+    - duration: 1
+      arrivalRate: 1000
+  defaults:
+    headers:
+      x-my-service-auth: '987401838271002188298567'
+  payload:
+    path: 'data.csv'
+    fields:
+      - 'id'
+      - 'noOfBaths'
+      - 'noOfBedrooms'
+      - 'noOfBeds'
+      - 'noOfGuests'
+      - 'guestAccess'
+      - 'homeHighlights1'
+      - 'homeHighlights2'
+      - 'homeHighlights3'
+      - 'interactionWithGuests'
+      - 'listingBlurb'
+      - 'listingName'
+      - 'neighborhood'
+      - 'otherThingsToNote'
+      - 'summary'
+      - 'theSpace' 
+scenarios:
+  - flow:
+    - post:
+        url: '/listings/{{$randomNumber(12000000, 12001000)}}/overview'
+        json:
+          values:
+            id: "{{ id }}"
+            noOfBaths: "{{ noOfBaths }}"
+            noOfBedrooms: "{{ noOfBedrooms }}"
+            noOfBeds: "{{ noOfBeds }}"
+            noOfGuests: "{{ noOfGuests }}"
+            guestAccess: "{{ guestAccess }}"
+            homeHighlights1: "{{ homeHighlights1 }}"
+            homeHighlights2: "{{ homeHighlights2 }}"
+            homeHighlights3: "{{ homeHighlights3 }}"
+            interactionWithGuests: "{{ interactionWithGuests }}"
+            listingBlurb: "{{ listingBlurb }}"
+            listingName: "{{ listingName }}"
+            neighborhood: "{{ neighborhood }}" 
+            otherThingsToNote: "{{ otherThingsToNote }}" 
+            summary: "{{ summary }}"
+            theSpace: "{{ theSpace }}"
+
+
+
+
+
+
+
+
+
